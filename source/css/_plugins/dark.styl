@@ -5,7 +5,7 @@ if hexo-config('plugins.backstretch.position') == 'fixed'
     display: none !important
 else
   #l_body
-    background-color: black
+    background-color: transparent !important;
 img
   filter: brightness(convert(hexo-config('color_scheme.dark.brightness'))) !important
 .lazyload
@@ -17,8 +17,10 @@ img
   color: var(--color-meta)
 .l_header ul.nav-list-h>li>a, ul.list-v >li>a
   color: var(--color-list)
+.l_header ul.nav-list-h>li>a:active, ul.list-v >li>a.active
+  color: var(--color-list-hover) !important;
 .blur
-  background: var(--color-site-bg)
+  background: rgba(0, 0, 0, 0.7) !important;
 .nav-main
   .u-search-input
     background: var(--color-card) !important
@@ -63,6 +65,7 @@ kbd
   background: var(--color-block) !important
 .cover-wrapper.dock .menu .list-h a:hover, .cover-wrapper.featured .menu .list-h a:hover, .cover-wrapper.focus .menu .list-h a:hover
   color: var(--color-text) !important
+  background:rgba(0, 0, 0, 0.5);
 //highlight
 .gutter
   background: var(--color-card) !important
@@ -129,7 +132,7 @@ if hexo-config('plugins.aplayer.enable')
   .aplayer-info
     background: var(--color-site-bg) !important
   .aplayer .aplayer-lrc:before
-    background: linear-gradient(180deg,#282c34 0,hsla(0,0%,100%,0))
+    background: transparent
   .aplayer .aplayer-lrc:after
     background: linear-gradient(180deg,hsla(0,0%,0%,0) 0,hsla(0,0%,13%,.8))
   .aplayer-pic
@@ -153,3 +156,11 @@ if hexo-config('comments.service')=='valine'
     background:  #393c40 !important
   .v[data-class=v] code, .v[data-class=v] pre
     background-color: #332828 !important
+
+// Shiraha
+.cover-wrapper.dock .menu
+  background-color: rgba(0, 0, 0, 0.5) !important;
+.cover-wrapper.dock .menu .list-h a
+  color:rgba(187, 187, 187, 0.7);
+ul.list-v.rightmenu li.music a.nav.volume .aplayer-volume-bar
+  background: rgb(19, 19, 19)
