@@ -17,8 +17,8 @@ img
   color: var(--color-meta)
 .l_header ul.nav-list-h>li>a, ul.list-v >li>a
   color: var(--color-list)
-.l_header ul.nav-list-h>li>a:active, ul.list-v >li>a.active
-  color: var(--color-list-hover) !important;
+.l_header ul.nav-list-h>li>a:active, ul.list-v >li>a.active, ul.list-v >li>a:hover
+  color: var(--color-text) !important;
 .blur
   background: rgba(0, 0, 0, 0.7) !important;
 .nav-main
@@ -164,3 +164,7 @@ if hexo-config('comments.service')=='valine'
   color:rgba(187, 187, 187, 0.7);
 ul.list-v.rightmenu li.music a.nav.volume .aplayer-volume-bar
   background: rgb(19, 19, 19)
+ul.list-v.rightmenu li.music a.nav.volume .aplayer-volume-bar i.left
+  background: rgb(151, 151, 151)
+.widget >.content ul.entry a .badge, .widget >.content ul.popular-posts a .badge
+  color: rgba(188, 188, 188, 0.7)
