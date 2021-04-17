@@ -31,6 +31,10 @@ var Debounce = (fn, t) => {
   volantis.$.search = $('#l_header .m_search'); // 搜索框 桌面端
   volantis.$.mPhoneList = $('#l_header .m-phone .list-v'); //  手机端 子菜单
 
+  // @shiraha: 我自己增加的状态存储
+  shiraha.showHeaderPoint = 0;
+  shiraha.calcShowHeaderPoint = () => volantis.$.bodyAnchor.offset().top - scrollCorrection;
+
   function setIsMobile(){
     if (document.documentElement.clientWidth < 500) {
       volantis.isMobile=1;
@@ -96,7 +100,8 @@ var Debounce = (fn, t) => {
     }
 
     //==========================================
-    var showHeaderPoint = volantis.$.bodyAnchor.offset().top - scrollCorrection;
+    // @shiraha: 将这个局部变量移动到全局空间中，以在 resize 时可以更新
+    shiraha.showHeaderPoint = shiraha.calcShowHeaderPoint();
     var pos = document.body.scrollTop;
     $(document, window).scroll(Debounce(() => {
       const scrollTop = $(window).scrollTop(); // 滚动条距离顶部的距离
@@ -112,7 +117,11 @@ var Debounce = (fn, t) => {
       } else {
         volantis.$.topBtn.removeClass('show').removeClass('hl');
       }
-      if (scrollTop - showHeaderPoint > -1) {
+      // @shiraha 在 showHeaderPoint 明显不合理的时候强制刷新
+      // @shiraha 将默认渲染器换为 syzoj-renderer 之后，原始代码失效
+      if (shiraha.showHeaderPoint <= 0) 
+        shiraha.showHeaderPoint = shiraha.calcShowHeaderPoint();
+      if (scrollTop - shiraha.showHeaderPoint > -1) {
         volantis.$.header.addClass('show');
       } else {
         volantis.$.header.removeClass('show');
@@ -324,6 +333,8 @@ var Debounce = (fn, t) => {
       if(volantis.isMobile!=volantis.isMobileOld){
         setGlobalHeaderMenuEvent();
       }
+      // @shiraha: 当屏幕宽度发生变化的时候，重新计算隐藏顶栏的位置
+      shiraha.showHeaderPoint = shiraha.calcShowHeaderPoint();
     } 
 
     // 全屏封面底部箭头
