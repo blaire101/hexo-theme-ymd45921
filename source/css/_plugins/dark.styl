@@ -138,6 +138,12 @@ if hexo-config('plugins.aplayer.enable')
     border-top: 1px solid var(--color-card)
   .aplayer.aplayer-withlist .aplayer-info
     border-bottom: 1px solid var(--color-block)
+  .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon:hover path
+    fill: #CCC
+  .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar
+    background: rgb(51, 51, 51)
+  .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-loaded
+    background: rgb(86, 86, 86)
 if hexo-config('comments.service')=='valine'
   #valine_container button
     background-color: var(--color-block) !important
